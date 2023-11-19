@@ -1,0 +1,55 @@
+﻿@model List<ProductVM>
+
+@{
+    ViewData["Title"] = "Exquisite Scents - Your Fragrance Destination";
+    var detailsRoute = "/Details/{0}";
+}
+
+<div class="jumbotron text-center" style="background-color: lightpink; padding: 3rem;">
+    <h1 class="display-4" style="color: #343a40;">Welcome to Exquisite Scents</h1>
+    <p class="lead">Discover a world of captivating fragrances that elevate your senses and style.</p>
+    <hr class="my-4">
+    <p>Explore our curated collection of fine perfumes and find the perfect scent for every occasion.</p>
+</div>
+
+<div id="cart-container"></div>
+<!--
+<div class="text-center mb-4">
+    <button id="showCartBtn" class="btn btn-primary">Show Cart</button>
+</div>
+-->
+
+<div class="row">
+
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card" style="background-color: #ffffff; border: 1px solid #dee2e6; border-radius: 10px; overflow: hidden;">
+
+                <img class="card-img-top" style="height: 300px; object-fit: cover; border-bottom: 1px solid #dee2e6;" src="~/@product.ImagePath" alt="Perfume Image" />
+
+                <div class="card-body" style="background-color: #f8f9fa;">
+                    <h4 class="card-title" style="color: #343a40; font-size: 1.2rem;">@product.Name</h4>
+                    <p class="card-text" style="color: #495057; font-size: 0.9rem;">Indulge in the captivating essence of this exquisite fragrance.</p>
+                    <p class="card-text" style="font-size: 1.1rem; color: #a51313;"><b>$@product.Price</b></p>
+                    <a href="@string.Format(detailsRoute, product.Id)" class="stretched-link"></a>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
+
+@section scripts {
+    <script src="C:\Users\Bianca Prelipcean\Desktop\MASTER BDSA\Afaceri Electronice\ProiectAE\MagazinAE\wwwroot\lib\jquery\dist\jquery.min.js"></script>
+    <script src="C:\Users\Bianca Prelipcean\Desktop\MASTER BDSA\Afaceri Electronice\ProiectAE\MagazinAE\wwwroot\js\cart.js"></script>
+
+    <script>
+        // Attach an event listener to the "Show Cart" button
+        $('#showCartBtn').on('click', function () {
+            showCart(); // Call the showCart function when the button is clicked
+        });
+    </script>
+
+}

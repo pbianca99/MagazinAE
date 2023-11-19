@@ -1,0 +1,41 @@
+﻿@model MagazinAE.Controllers.CartController.CartViewModel
+
+<h2>Shopping Cart</h2>
+
+@if (Model.ProductsInCart.Count == 0 || Model.ProductsInCart == null)
+{
+    <p>Your shopping cart is currently empty.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model.ProductsInCart)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2" class="text-end"><strong>Total:</strong></td>
+                <td class="text-start">@Model.ProductsInCart.Sum(p => p.Price)</td>
+                <!-- Add more columns as needed -->
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-center">
+        <a class="btn btn-primary" href="/Payment/PaymentWithPayPal">Proceed to Payment</a>
+    </div>
+}
